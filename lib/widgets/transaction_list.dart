@@ -1,4 +1,5 @@
 import 'package:expenses_app/models/transaction.dart';
+import 'package:expenses_app/widgets/transaction_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -39,38 +40,9 @@ class TransactionList extends StatelessWidget {
                     height: 500,
                     child: ListView.builder(
                       itemBuilder: (context, index) {
-                        return Dismissible(
-                          key: UniqueKey(),
-                          background: Container(
-                            color: Theme.of(context).errorColor,
-                            child: Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            ),
-                          ),
-                          onDismissed: (direction) =>
-                              _deleteTransaction(_userTransactions[index].id),
-                          child: Card(
-                            elevation: 3,
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                radius: 30,
-                                child: Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: FittedBox(
-                                        child: Text(
-                                            '\$${_userTransactions[index].amount}'))),
-                              ),
-                              title: Text(
-                                _userTransactions[index].title,
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                              subtitle: Text(DateFormat.yMMMd()
-                                  .format(_userTransactions[index].date)),
-                            ),
-                          ),
+                        return TransactionCard(
+                          transaction: _userTransactions[index],
+                          deleteTransaction: _deleteTransaction,
                         );
                       },
                       itemCount: _userTransactions.length,
