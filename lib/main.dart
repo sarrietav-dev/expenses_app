@@ -110,14 +110,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-            _showChart
-                ? Container(
-                    height: (MediaQuery.of(context).size.height -
-                            appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
-                        .7,
-                    child: Chart(_getRecentTransactions))
-                : transactionList
+            if (!isLandscape)
+              Container(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar.preferredSize.height -
+                          MediaQuery.of(context).padding.top) *
+                      .3,
+                  child: Chart(_getRecentTransactions)),
+            if (!isLandscape) transactionList,
+            if (isLandscape)
+              _showChart
+                  ? Container(
+                      height: (MediaQuery.of(context).size.height -
+                              appBar.preferredSize.height -
+                              MediaQuery.of(context).padding.top) *
+                          .7,
+                      child: Chart(_getRecentTransactions))
+                  : transactionList
           ],
         ),
       ),
