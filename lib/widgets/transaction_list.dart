@@ -1,7 +1,6 @@
 import 'package:expenses_app/models/transaction.dart';
 import 'package:expenses_app/widgets/transaction_card.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> _userTransactions;
@@ -12,7 +11,7 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
+      height: MediaQuery.of(context).size.height * .6,
       child: _userTransactions.isEmpty
           ? Column(
               children: [
