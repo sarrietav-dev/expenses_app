@@ -70,6 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget build(BuildContext context) {
+    final bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     final appBar = AppBar(
       title: Text("Personal Expenses"),
       actions: [
@@ -84,20 +87,21 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Show chart"),
-                Switch(
-                  value: _showChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _showChart = val;
-                    });
-                  },
-                ),
-              ],
-            ),
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Show chart"),
+                  Switch(
+                    value: _showChart,
+                    onChanged: (val) {
+                      setState(() {
+                        _showChart = val;
+                      });
+                    },
+                  ),
+                ],
+              ),
             _showChart
                 ? Container(
                     height: (MediaQuery.of(context).size.height -
@@ -108,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 : Container(
                     height: (MediaQuery.of(context).size.height -
                             appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
+                            MediaQuery.of(contexk).padding.top) *
                         .7,
                     child:
                         TransactionList(_userTransactions, _deleteTransaction)),
