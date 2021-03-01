@@ -82,6 +82,14 @@ class _MyHomePageState extends State<MyHomePage> {
         )
       ],
     );
+
+    final Widget transactionList = Container(
+        height: (MediaQuery.of(context).size.height -
+                appBar.preferredSize.height -
+                MediaQuery.of(context).padding.top) *
+            .7,
+        child: TransactionList(_userTransactions, _deleteTransaction));
+
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -109,13 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             MediaQuery.of(context).padding.top) *
                         .7,
                     child: Chart(_getRecentTransactions))
-                : Container(
-                    height: (MediaQuery.of(context).size.height -
-                            appBar.preferredSize.height -
-                            MediaQuery.of(contexk).padding.top) *
-                        .7,
-                    child:
-                        TransactionList(_userTransactions, _deleteTransaction)),
+                : transactionList
           ],
         ),
       ),
