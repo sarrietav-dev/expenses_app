@@ -1,7 +1,6 @@
 import 'package:expenses_app/models/transaction.dart';
 import 'package:expenses_app/widgets/transaction_card.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> _userTransactions;
@@ -9,30 +8,34 @@ class TransactionList extends StatelessWidget {
 
   TransactionList(this._userTransactions, this._deleteTransaction);
 
+  Widget _renderEmptyList() {
+    return LayoutBuilder(
+      builder: (context, constraints) => Column(
+        children: [
+          Text(
+            "No transactions added yet!",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          SizedBox(
+            height: 60,
+          ),
+          Container(
+            height: constraints.maxHeight * .6,
+            child: Image.asset(
+              "assets/images/waiting.png",
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: _userTransactions.isEmpty
-          ? LayoutBuilder(
-              builder: (context, constraints) => Column(
-                children: [
-                  Text(
-                    "No transactions added yet!",
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  SizedBox(
-                    height: 60,
-                  ),
-                  Container(
-                    height: constraints.maxHeight * .6,
-                    child: Image.asset(
-                      "assets/images/waiting.png",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
-              ),
-            )
+          ? _renderEmptyList()
           : Column(
               children: [
                 Expanded(
