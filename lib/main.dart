@@ -91,6 +91,26 @@ class _MyHomePageState extends State<MyHomePage> {
         : transactionList;
   }
 
+  Widget _renderSwitch() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Show chart",
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        Switch.adaptive(
+          value: _showChart,
+          onChanged: (val) {
+            setState(() {
+              _showChart = val;
+            });
+          },
+        ),
+      ],
+    );
+  }
+
   Widget build(BuildContext context) {
     final bool isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
@@ -128,24 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final Widget pageTree = SingleChildScrollView(
       child: Column(
         children: [
-          if (isLandscape)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Show chart",
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                Switch.adaptive(
-                  value: _showChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _showChart = val;
-                    });
-                  },
-                ),
-              ],
-            ),
+          if (isLandscape) _renderSwitch(),
           if (!isLandscape) _renderChart(appBar),
           if (!isLandscape) transactionList,
           if (isLandscape) _renderLandscapeWidgets(appBar, transactionList),
