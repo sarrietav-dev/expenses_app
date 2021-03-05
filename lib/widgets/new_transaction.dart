@@ -85,11 +85,13 @@ class _NewTransactionState extends State<NewTransaction> {
                   ],
                 ),
               ),
-              RaisedButton(
-                  child: Text("Add transaction"),
-                  textColor: Theme.of(context).textTheme.button.color,
-                  onPressed: _handleSubmitData,
-                  color: Theme.of(context).primaryColor)
+              ElevatedButton(
+                onPressed: _handleSubmitData,
+                child: Text("Add transaction"),
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor,
+                    textStyle: Theme.of(context).textTheme.button),
+              ),
             ],
             crossAxisAlignment: CrossAxisAlignment.end,
           ),
