@@ -71,11 +71,20 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Widget _renderChart(AppBar appBar) {
+    return Container(
+        height: (MediaQuery.of(context).size.height -
+                appBar.preferredSize.height -
+                MediaQuery.of(context).padding.top) *
+            .3,
+        child: Chart(_getRecentTransactions));
+  }
+
   Widget build(BuildContext context) {
     final bool isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
 
-    final ObstructingPreferredSizeWidget appBar = Platform.isIOS
+    final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
             middle: Text("Personal Expenses"),
             trailing: Row(
@@ -126,13 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-          if (!isLandscape)
-            Container(
-                height: (MediaQuery.of(context).size.height -
-                        appBar.preferredSize.height -
-                        MediaQuery.of(context).padding.top) *
-                    .3,
-                child: Chart(_getRecentTransactions)),
+          if (!isLandscape) _renderChart(appBar),
           if (!isLandscape) transactionList,
           if (isLandscape)
             _showChart
