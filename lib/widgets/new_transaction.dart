@@ -74,14 +74,16 @@ class _NewTransactionState extends State<NewTransaction> {
                     Text(_selectedDate == null
                         ? "No date chosen"
                         : 'Picked Date: ${DateFormat.yMMMd().format(_selectedDate)}'),
-                    FlatButton(
+                    TextButton(
+                      onPressed: _presentDatePicker,
                       child: Text(
                         "Choose Date",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      onPressed: _presentDatePicker,
-                      textColor: Theme.of(context).primaryColor,
-                    )
+                      style: TextButton.styleFrom(
+                          textStyle:
+                              TextStyle(color: Theme.of(context).primaryColor)),
+                    ),
                   ],
                 ),
               ),
