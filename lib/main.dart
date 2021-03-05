@@ -27,6 +27,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+enum AppBarType { CUPERTINO, METERIAL }
+
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -111,32 +113,38 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget _renderAppBar(AppBarType appBarType) {
+    switch (appBarType) {
+      case AppBarType.CUPERTINO:
+        return CupertinoNavigationBar(
+          middle: Text("Personal Expenses"),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GestureDetector(
+                child: Icon(CupertinoIcons.add),
+                onTap: () => _onClickCreateButton(context),
+              )
+            ],
+          ),
+        );
+      case AppBarType.METERIAL:
+        return AppBar(title: Text("Personal Expenses"), actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () => _onClickCreateButton(context),
+          )
+        ]);
+    }
+  }
+
   Widget build(BuildContext context) {
     final bool isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
 
     final PreferredSizeWidget appBar = Platform.isIOS
-        ? CupertinoNavigationBar(
-            middle: Text("Personal Expenses"),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                GestureDetector(
-                  child: Icon(CupertinoIcons.add),
-                  onTap: () => _onClickCreateButton(context),
-                )
-              ],
-            ),
-          )
-        : AppBar(
-            title: Text("Personal Expenses"),
-            actions: [
-              IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () => _onClickCreateButton(context),
-              )
-            ],
-          );
+        ? _renderAppBar(AppBarType.CUPERTINO)
+        : _renderAppBar(AppBarType.METERIAL);
 
     final Widget transactionList = Container(
         height: (MediaQuery.of(context).size.height -
