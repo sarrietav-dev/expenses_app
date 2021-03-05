@@ -80,6 +80,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Chart(_getRecentTransactions));
   }
 
+  Widget _renderLandscapeWidgets(AppBar appBar, Widget transactionList) {
+    return _showChart
+        ? Container(
+            height: (MediaQuery.of(context).size.height -
+                    appBar.preferredSize.height -
+                    MediaQuery.of(context).padding.top) *
+                .7,
+            child: Chart(_getRecentTransactions))
+        : transactionList;
+  }
+
   Widget build(BuildContext context) {
     final bool isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
@@ -137,15 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           if (!isLandscape) _renderChart(appBar),
           if (!isLandscape) transactionList,
-          if (isLandscape)
-            _showChart
-                ? Container(
-                    height: (MediaQuery.of(context).size.height -
-                            appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
-                        .7,
-                    child: Chart(_getRecentTransactions))
-                : transactionList
+          if (isLandscape) _renderLandscapeWidgets(appBar, transactionList),
         ],
       ),
     );
