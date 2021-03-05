@@ -11,7 +11,7 @@ class TransactionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: UniqueKey(),
+      key: ValueKey(UniqueKey()),
       background: Container(
         color: Theme.of(context).errorColor,
         child: Icon(
