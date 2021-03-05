@@ -2,15 +2,17 @@
 
 A new Flutter project.
 
-## Getting Started
+![Screenshot of the app inside an emulator](https://user-images.githubusercontent.com/25210925/110186468-5ca07580-7de3-11eb-8fb4-7367049d84f1.png)
 
-This project is a starting point for a Flutter application.
+## What is this about?
+This app tracks the number of expenses you've got. And shows a chart that helps to visualize the expenses in a weekly basis.
 
-A few resources to get you started if this is your first Flutter project:
+## Features
+### Swipe left of right to delete
+![Swiping a card to delete](https://user-images.githubusercontent.com/25210925/110186618-d89abd80-7de3-11eb-95f5-14ad357ee6ab.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Record an expense
+![image](https://user-images.githubusercontent.com/25210925/110186657-f9fba980-7de3-11eb-8e67-f4fe4546f8d1.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Warning!
+This app doesn't save the data on storage. If you close the app, your expenses will be gone!
