@@ -31,37 +31,40 @@ class TransactionList extends StatelessWidget {
     );
   }
 
+  Widget _renderList(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          flex: 7,
+          child: Container(
+            height: 500,
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return TransactionCard(
+                  transaction: _userTransactions[index],
+                  deleteTransaction: _deleteTransaction,
+                );
+              },
+              itemCount: _userTransactions.length,
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: Text(
+            "Swipe to delete",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: _userTransactions.isEmpty
-          ? _renderEmptyList()
-          : Column(
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: Container(
-                    height: 500,
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return TransactionCard(
-                          transaction: _userTransactions[index],
-                          deleteTransaction: _deleteTransaction,
-                        );
-                      },
-                      itemCount: _userTransactions.length,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    "Swipe to delete",
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                )
-              ],
-            ),
+      child:
+          _userTransactions.isEmpty ? _renderEmptyList() : _renderList(context),
     );
   }
 }
