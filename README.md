@@ -14,7 +14,7 @@ This app tracks the number of expenses you've got. And shows a chart that helps 
 
 ![Swiping a card to delete](https://user-images.githubusercontent.com/25210925/110186618-d89abd80-7de3-11eb-95f5-14ad357ee6ab.png)
 
-### Record an expense
+### Record an expending
 
 ![image](https://user-images.githubusercontent.com/25210925/110186657-f9fba980-7de3-11eb-8e67-f4fe4546f8d1.png)
 
